@@ -1,38 +1,39 @@
-import { Calculator, PoundSterling } from 'lucide-react';
-import React from 'react';
-import { useState } from 'react';
+import { Calculator } from "lucide-react";
+import React from "react";
+import { useState } from "react";
 
 const MortgageCalculator = () => {
-    const [showResults, setShowResults] = useState(false);
-    const [formData, setFormData] = useState({
-        mortgageAmount: "",
-        mortgageTerm: "",
-        interestRate: "",
-        mortgageType: "",
+  const [showResults, setShowResults] = useState(false);
+  const [formData, setFormData] = useState({
+    mortgageAmount: "",
+    mortgageTerm: "",
+    interestRate: "",
+    mortgageType: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setShowResults(true);
+  };
+
+  const handleClear = (e) => {
+    e.preventDefault();
+    setFormData({
+      mortgageAmount: "",
+      mortgageTerm: "",
+      interestRate: "",
+      mortgageType: "",
     });
-
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setShowResults(true);
-    }
-
-    const handleClear = (e) => {
-        e.preventDefault();
-        setFormData({
-          mortgageAmount: "",
-          mortgageTerm: "",
-          interestRate: "",
-          mortgageType: "",
-        });
-    }
+  };
   return (
     <form className="px-8 py-6" onSubmit={handleSubmit}>
       <div className="block md:flex items-center justify-between">
@@ -183,6 +184,6 @@ const MortgageCalculator = () => {
       )} */}
     </form>
   );
-}
+};
 
 export default MortgageCalculator;
